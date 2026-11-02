@@ -9,10 +9,9 @@ branches:
 jobs:
 build:
 runs-on: ubuntu-latest
-
 steps:
-  - name: Checkout repository
-    uses: actions/checkout@v4
+- name: Checkout repository
+uses: actions/checkout@v4
 
   - name: Set up Java
     uses: actions/setup-java@v4
@@ -24,12 +23,12 @@ steps:
     uses: subosito/flutter-action@v2
     with:
       channel: stable
-      cache: true
 
-  - name: Prepare Flutter project
-    run: |
-      flutter create --platforms=android .
-      flutter pub get
+  - name: Generate Android project files
+    run: flutter create --platforms=android .
+
+  - name: Get dependencies
+    run: flutter pub get
 
   - name: Build APK
     run: flutter build apk --release
